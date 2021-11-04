@@ -20,8 +20,8 @@ export default function Image(props) {
         <h3>Title: {props.imageInfo.title}</h3> 
         <p>{props.imageInfo.date}</p>
         <StyledPic src={props.imageInfo.url} className='picture' alt='Nasa pic of the day'/>
-        <p><b>Photographer:</b> {props.imageInfo.copyright}</p>
-        <p><b>About the photo:</b> {props.imageInfo.explanation}</p>
+        { props.imageInfo.copyright ? (<p><b>Photographer:</b> {props.imageInfo.copyright}</p>) : null }
+        <p><b><em>About the photo:</em></b> {props.imageInfo.explanation}</p>
     </StyledImageContainer>
     )
 };

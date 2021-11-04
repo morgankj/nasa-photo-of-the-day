@@ -35,7 +35,7 @@ export default function App() {
   const [nasaData, setNasaData] = useState();
 
   useEffect(() => {
-    axios.get(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
+    axios.get(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&count=5`)
       .then(res => {
         setNasaData(res.data);
       })
@@ -49,11 +49,11 @@ export default function App() {
       <HeaderLine>
         <StyledLogo src={logo} alt=""/> 
         <div>
-          <StyledHeader>Astronomy Photo Of The Day</StyledHeader>
-          <StyledSubHeader>See the NASA Photo of the Day below along with photo credits and details.</StyledSubHeader>
+          <StyledHeader>Top 5 Astronomy Photos Of The Day</StyledHeader>
+          <StyledSubHeader>See the best NASA Photos of the Day below along with photo credits and details.</StyledSubHeader>
         </div>
       </HeaderLine>
-      { nasaData ? <Image imageInfo={nasaData}/> : null }
+      { nasaData ? (nasaData.map(item => (<Image imageInfo={item} key={item.hdurl}/>))) : null }
     </div>
   );
 }
