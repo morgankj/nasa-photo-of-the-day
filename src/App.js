@@ -5,11 +5,25 @@ import { API_KEY } from './constants';
 import axios from 'axios';
 import Image from './components/Image';
 import styled from 'styled-components';
+import logo from './images/nasa_logo.png';
+
+const HeaderLine = styled.div 
+` display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+`
+
+const StyledLogo = styled.img 
+` width: 10%;
+  margin-right: .5%;
+`
 
 const StyledHeader = styled.h1 
 ` color: ${pr => pr.theme.darkOrange};
   font-size: 3rem;
-  margin-bottom: 1%;
+  margin: 0;
+  margin-top: 3%;
 `
 
 const StyledSubHeader = styled.p 
@@ -32,8 +46,13 @@ export default function App() {
 
   return (
     <div className="App">
-      <StyledHeader>Astronomy Photo Of The Day</StyledHeader>
-      <StyledSubHeader>See the NASA Photo of the Day below along with photo credits and details.</StyledSubHeader>
+      <HeaderLine>
+        <StyledLogo src={logo} alt=""/> 
+        <div>
+          <StyledHeader>Astronomy Photo Of The Day</StyledHeader>
+          <StyledSubHeader>See the NASA Photo of the Day below along with photo credits and details.</StyledSubHeader>
+        </div>
+      </HeaderLine>
       { nasaData ? <Image imageInfo={nasaData}/> : null }
     </div>
   );
